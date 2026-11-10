@@ -1,14 +1,18 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Brand</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
   </head>
   <body>
     <div class="page-header">
       <div class="title">Brand List</div>
-      <div>+ New Brand</div>
+      <div class="action-buttons">
+        <a href="#" class="btn add-btn"> + New Brand </a>
+      </div>
     </div>
     <div>
       <table>
@@ -24,7 +28,13 @@
           <tr>
             <td>{{brand.name}}</td>
             <td>{{brand.created_on}}</td>
-            <td>Details,Edit, Delete</td>
+            <td>
+              <div class="action-buttons">
+                <a href="#" class="btn details-btn">Details</a>
+                <a href="#" class="btn edit-btn">Edit</a>
+                <a href="#" class="btn delete-btn">Delete</a>
+              </div>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
