@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.views import View
 from .models import Brand
@@ -18,3 +18,7 @@ class BrandView(View):
 def get(request):
     brands = Brand.objects.all()
     return render(request,"index.html",{'brands':brands})
+
+def details(request,id):
+    brand = get_object_or_404(Brand,id=id)
+    return render(request,"details.html",{'brand':brand})
