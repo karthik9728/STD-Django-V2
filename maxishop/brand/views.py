@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views import View
+from .models import Brand
 
 # Create your views here.
 # Class or Function Based View
@@ -13,3 +14,7 @@ def brandFun(request):
 class BrandView(View):
     def get(self,request):
         return HttpResponse("Brand Class")
+
+def get(request):
+    brands = Brand.objects.all()
+    return render(request,"index.html",{'brands':brands})
