@@ -229,7 +229,104 @@ tbody tr:last-child td {
   overflow-wrap: anywhere;
 }
 
-/* Error Message */
+/* Form Container */
+.form-container {
+  width: 100%;
+
+  margin: 22px auto;
+  padding: 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Django Form Paragraphs */
+.form-container form p {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 0 22px;
+}
+
+/* Labels */
+.form-container form label {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+/* Input Fields */
+.form-container input:not([type="checkbox"]):not([type="radio"]),
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 11px 13px;
+  color: var(--text);
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Textarea */
+.form-container textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+/* Focus State */
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+/* Placeholder */
+.form-container input::placeholder,
+.form-container textarea::placeholder {
+  color: #94a3b8;
+}
+
+/* Help Text */
+.form-container .helptext {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Validation Errors */
+.form-container .errorlist {
+  margin: 0;
+  padding: 10px 12px;
+  list-style: none;
+  color: #be123c;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-radius: 7px;
+  font-size: 12px;
+}
+
+/* Submit Button */
+.form-container .action-buttons {
+  justify-content: flex-start;
+  margin-top: 28px;
+}
+
+.form-container .add-btn {
+  min-width: 110px;
+  min-height: 42px;
+  padding: 11px 22px;
+  font-size: 13px;
+}
+
+/* 404 Error Message */
 .error-container {
   min-height: 75vh;
   display: flex;
@@ -337,6 +434,24 @@ tbody tr:last-child td {
     min-height: 34px;
     padding: 7px 10px;
     font-size: 11px;
+  }
+
+  /* Form */
+  .form-container {
+    padding: 20px 16px;
+    margin: 18px auto;
+  }
+
+  .form-container form p {
+    margin-bottom: 18px;
+  }
+
+  .form-container .action-buttons {
+    justify-content: stretch;
+  }
+
+  .form-container .add-btn {
+    width: 100%;
   }
 }
 

@@ -1,7 +1,8 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from django.views import View
 from .models import Brand
+from .form import BrandForm
 
 # Create your views here.
 # Class or Function Based View
@@ -30,3 +31,12 @@ def get(request,id = None):
     else:
         brand = get_object_or_404(Brand,id=id)
         return render(request,"details.html",{'brand':brand})
+
+def create(request):
+    form = BrandForm()
+    if request.method == "POST" :
+        form = BrandForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('brand')
+    return render(request,"create.html",{'form':form})
