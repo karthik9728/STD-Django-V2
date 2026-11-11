@@ -16,9 +16,18 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.conf import settings
+from django.views.static import serve
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("brand/",include('brand.urls'))
+    path("brand/",include('brand.urls')),
+     # Local development static file serving
+    re_path(
+        r'^static/(?P<path>.*)$',
+        serve,
+        {'document_root': settings.BASE_DIR / '_static'}
+    ),
 ]
+
