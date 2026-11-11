@@ -15,10 +15,18 @@ class BrandView(View):
     def get(self,request):
         return HttpResponse("Brand Class")
 
-def get(request):
-    brands = Brand.objects.all()
-    return render(request,"index.html",{'brands':brands})
+# def get(request):
+#     brands = Brand.objects.all()
+#     return render(request,"index.html",{'brands':brands})
 
-def details(request,id):
-    brand = get_object_or_404(Brand,id=id)
-    return render(request,"details.html",{'brand':brand})
+# def details(request,id):
+#     brand = get_object_or_404(Brand,id=id)
+#     return render(request,"details.html",{'brand':brand})
+
+def get(request,id = None):
+    if(id is None):
+        brands = Brand.objects.all()
+        return render(request,"index.html",{'brands':brands})
+    else:
+        brand = get_object_or_404(Brand,id=id)
+        return render(request,"details.html",{'brand':brand})
