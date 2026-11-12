@@ -72,3 +72,12 @@ def upsert(request,id=None):
         
     return render(request,"upsert.html",{'form':form})
 
+def delete(request,id):
+    brand = get_object_or_404(Brand,id=id)
+
+    if request.method == "POST" :
+        brand.delete()
+        return redirect('brand')
+
+    return render(request, "delete.html", {'brand': brand})
+    

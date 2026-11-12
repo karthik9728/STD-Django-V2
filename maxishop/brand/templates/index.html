@@ -34,7 +34,9 @@
                   >Details</a
                 >
                 <a href="{% url 'edit' brand.id%}" class="btn edit-btn">Edit</a>
-                <a href="#" class="btn delete-btn">Delete</a>
+                <a href="{% url 'delete' brand.id%}" class="btn delete-btn"
+                  >Delete</a
+                >
               </div>
             </td>
           </tr>

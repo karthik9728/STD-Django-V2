@@ -9,6 +9,7 @@ urlpatterns = [
     # path('edit/<int:id>/',views.edit,name="edit"),
     path('create',views.upsert,name="create"),
     path('edit/<int:id>/',views.upsert,name="edit"),
+    path('delete/<int:id>/',views.delete,name="delete"),
     path('function',views.brandFun),
     path('class',views.BrandView.as_view())
 ]

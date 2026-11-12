@@ -399,6 +399,28 @@ tbody tr:last-child td {
   background: #4338ca;
 }
 
+/* Delete Container */
+.delete-message {
+  margin-bottom: 25px;
+  padding: 16px;
+  color: #991b1b;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.form-container .delete-btn {
+  min-height: 42px;
+  padding: 11px 22px;
+  background: var(--red);
+  font-size: 13px;
+}
+
+.form-container .delete-btn:hover {
+  background: #be123c;
+}
+
 /* Responsive */
 @media (max-width: 760px) {
   body {
