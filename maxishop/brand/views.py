@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
 from django.views import View
+from django.contrib import messages
 from .models import Brand
 from .form import BrandForm
 
@@ -66,7 +67,13 @@ def upsert(request,id=None):
         form = BrandForm(request.POST,instance=brand)
         if form.is_valid():
             form.save()
-            return redirect('brand')
+
+            if id:
+                messages.info(request, "Brand updated successfully!")
+            else:
+                messages.success(request, "Brand created successfully!")
+                
+            return redirect('brand')           
     else:
         form = BrandForm(instance=brand)
         
@@ -77,6 +84,7 @@ def delete(request,id):
 
     if request.method == "POST" :
         brand.delete()
+        messages.warning(request, "Brand deleted successfully!")
         return redirect('brand')
 
     return render(request, "delete.html", {'brand': brand})
