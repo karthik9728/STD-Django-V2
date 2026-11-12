@@ -232,7 +232,6 @@ tbody tr:last-child td {
 /* Form Container */
 .form-container {
   width: 100%;
-
   margin: 22px auto;
   padding: 32px;
   background: var(--surface);
@@ -301,18 +300,6 @@ tbody tr:last-child td {
   font-size: 12px;
 }
 
-/* Validation Errors */
-.form-container .errorlist {
-  margin: 0;
-  padding: 10px 12px;
-  list-style: none;
-  color: #be123c;
-  background: #fff1f2;
-  border: 1px solid #fecdd3;
-  border-radius: 7px;
-  font-size: 12px;
-}
-
 /* Submit Button */
 .form-container .action-buttons {
   justify-content: flex-start;
@@ -324,6 +311,44 @@ tbody tr:last-child td {
   min-height: 42px;
   padding: 11px 22px;
   font-size: 13px;
+}
+
+/* Validation Error Messages */
+.form-container .errorlist {
+  margin: 4px 0 0;
+  padding: 9px 12px;
+  list-style: none;
+  color: #e11d48;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Invalid Input */
+.form-container input[aria-invalid="true"],
+.form-container select[aria-invalid="true"],
+.form-container textarea[aria-invalid="true"] {
+  border-color: #e11d48;
+  background: #fffafa;
+}
+
+/* Error Focus */
+.form-container input[aria-invalid="true"]:focus {
+  border-color: #e11d48;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.1);
+}
+
+/* Required Field Indicator */
+.form-container label {
+  color: var(--text);
+  font-weight: 650;
+}
+
+/* Error Message Spacing */
+.form-container form p .errorlist + input {
+  margin-top: 4px;
 }
 
 /* 404 Error Message */

@@ -39,4 +39,7 @@ def create(request):
         if form.is_valid():
             form.save()
             return redirect('brand')
+    else:
+        form = BrandForm()
+        
     return render(request,"create.html",{'form':form})
