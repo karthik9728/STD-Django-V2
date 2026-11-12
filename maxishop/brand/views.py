@@ -43,3 +43,18 @@ def create(request):
         form = BrandForm()
         
     return render(request,"create.html",{'form':form})
+
+def edit(request,id):
+    
+    brand = get_object_or_404(Brand,id=id)
+    form = BrandForm()
+    if request.method == "POST" :
+        form = BrandForm(request.POST,instance=brand)
+        if form.is_valid():
+            form.save()
+            return redirect('brand')
+    else:
+        form = BrandForm(instance=brand)
+        
+    return render(request,"edit.html",{'form':form})
+

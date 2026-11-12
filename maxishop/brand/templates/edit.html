@@ -1,0 +1,37 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Brand</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <div class="page-header">
+      <div class="title">Edit Brand</div>
+      <div class="action-buttons">
+        <a href="/brand" class="btn back-btn">Back</a>
+      </div>
+    </div>
+    <div class="form-container">
+      <form method="post">
+        {% csrf_token %} {% comment %} {{form.as_p}} {% endcomment %}
+
+        <div class="form-field">
+          {{ form.name.label_tag }} {{ form.name }} {% if form.name.errors %}
+          <div class="errorlist">
+            {% for error in form.name.errors %}
+            <div>{{ error }}</div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="action-buttons">
+          <button type="submit" class="btn add-btn">Update</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
