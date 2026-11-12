@@ -1,55 +1,42 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brand</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-  </head>
-  <body>
-    <div class="page-header">
-      <div class="title">Brand List</div>
-      <div class="action-buttons">
-        <a href="/brand/create" class="btn add-btn"> + New Brand </a>
-      </div>
-    </div>
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Created On</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for brand in brands %}
-          <tr>
-            <td>{{brand.name}}</td>
-            <td>{{brand.created_on}}</td>
-            <td>
-              <div class="action-buttons">
-                <a
-                  href="{% url 'brand:details' brand.id %}"
-                  class="btn details-btn"
-                  >Details</a
-                >
-                <a href="{% url 'brand:edit' brand.id%}" class="btn edit-btn"
-                  >Edit</a
-                >
-                <a
-                  href="{% url 'brand:delete' brand.id%}"
-                  class="btn delete-btn"
-                  >Delete</a
-                >
-              </div>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <div class="">{% include "toast.html" %}</div>
-  </body>
-</html>
+{% extends "base.html" %} {% block title %}Brand List | MaxiShop{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="title">Brand List</div>
+  <div class="action-buttons">
+    <a href="/brand/create" class="btn add-btn"> + New Brand </a>
+  </div>
+</div>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Created On</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for brand in brands %}
+      <tr>
+        <td>{{brand.name}}</td>
+        <td>{{brand.created_on}}</td>
+        <td>
+          <div class="action-buttons">
+            <a href="{% url 'brand:details' brand.id %}" class="btn details-btn"
+              >Details</a
+            >
+            <a href="{% url 'brand:edit' brand.id%}" class="btn edit-btn"
+              >Edit</a
+            >
+            <a href="{% url 'brand:delete' brand.id%}" class="btn delete-btn"
+              >Delete</a
+            >
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

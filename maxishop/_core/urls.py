@@ -19,8 +19,10 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.views.static import serve
+from . import views
 
 urlpatterns = [
+    path('', views.home, name='home'),
     path("admin/", admin.site.urls),
     path("brand/",include('brand.urls')),
     path('category/', include('category.urls')),

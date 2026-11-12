@@ -1,35 +1,27 @@
-<!doctype html>
-{% load static %}
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Delete Brand</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-  </head>
-  <body>
-    <div class="page-header">
-      <div class="title">Delete Brand</div>
-      <div class="action-buttons">
-        <a href="{% url 'brand:list' %}" class="btn back-btn">Back</a>
-      </div>
+{% extends "base.html" %} {% block title %}Delete Brand{% endblock %} {% block content %}
+<div class="page-header">
+  <div class="title">Delete Brand</div>
+  <div class="action-buttons">
+    <a href="{% url 'brand:list' %}" class="btn back-btn">Back</a>
+  </div>
+</div>
+
+<div class="form-container">
+  <div class="delete-message">
+    Are you sure you want to delete
+    <strong>{{ brand.name }}</strong>
+    ?
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="action-buttons">
+      <button type="submit" class="btn delete-btn">Confirm Delete</button>
+
+      <a href="{% url 'brand:list' %}" class="btn back-btn">Cancel</a>
     </div>
+  </form>
+</div>
 
-    <div class="form-container">
-      <div class="delete-message">
-        Are you sure you want to delete
-        <strong>{{ brand.name }}</strong>?
-      </div>
-
-      <form method="post">
-        {% csrf_token %}
-
-        <div class="action-buttons">
-          <button type="submit" class="btn delete-btn">Confirm Delete</button>
-
-          <a href="{% url 'brand:list' %}" class="btn back-btn"> Cancel </a>
-        </div>
-      </form>
-    </div>
-  </body>
-</html>
+{% endblock %}

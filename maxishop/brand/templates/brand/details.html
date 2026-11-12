@@ -1,34 +1,24 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brand Details</title>
-    <link rel="stylesheet" href="{% static  'css/styles.css' %}" />
-  </head>
-  <body>
-    <div class="page-header">
-      <div class="title">Brand Details</div>
-      <div class="action-buttons">
-        <a href="/brand" class="btn back-btn">Back</a>
-      </div>
-    </div>
-    <div class="details-section">
-      <div class="details-item">
-        <div class="detail-label">Id</div>
-        <div class="detail-data">{{brand.id}}</div>
-      </div>
+{% extends "base.html" %} {% block title %}Brand Details{% endblock %} {% block content %}
+<div class="page-header">
+  <div class="title">Brand Details</div>
+  <div class="action-buttons">
+    <a href="/brand" class="btn back-btn">Back</a>
+  </div>
+</div>
+<div class="details-section">
+  <div class="details-item">
+    <div class="detail-label">Id</div>
+    <div class="detail-data">{{brand.id}}</div>
+  </div>
 
-      <div class="details-item">
-        <div class="detail-label">Name</div>
-        <div class="detail-data">{{brand.name}}</div>
-      </div>
+  <div class="details-item">
+    <div class="detail-label">Name</div>
+    <div class="detail-data">{{brand.name}}</div>
+  </div>
 
-      <div class="details-item">
-        <div class="detail-label">Created On</div>
-        <div class="detail-data">{{brand.created_on}}</div>
-      </div>
-    </div>
-  </body>
-</html>
+  <div class="details-item">
+    <div class="detail-label">Created On</div>
+    <div class="detail-data">{{brand.created_on}}</div>
+  </div>
+</div>
+{% endblock %}

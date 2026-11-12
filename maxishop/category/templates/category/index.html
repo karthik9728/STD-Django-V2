@@ -1,57 +1,35 @@
-{% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Category</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-  </head>
-  <body>
-    <div class="page-header">
-      <div class="title">Category List</div>
-      <div class="action-buttons">
-        <a href="/category/create" class="btn add-btn"> + New Category </a>
-      </div>
-    </div>
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Created On</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for category in categories %}
-          <tr>
-            <td>{{category.name}}</td>
-            <td>{{category.created_on}}</td>
-            <td>
-              <div class="action-buttons">
-                <a
-                  href="{% url 'category:details' category.id %}"
-                  class="btn details-btn"
-                  >Details</a
-                >
-                <a
-                  href="{% url 'category:edit' category.id%}"
-                  class="btn edit-btn"
-                  >Edit</a
-                >
-                <a
-                  href="{% url 'category:delete' category.id%}"
-                  class="btn delete-btn"
-                  >Delete</a
-                >
-              </div>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    <div class="">{% include "toast.html" %}</div>
-  </body>
-</html>
+{% extends "base.html" %} {% block title %}Category{% endblock %} {% block content %}
+<div class="page-header">
+  <div class="title">Category List</div>
+  <div class="action-buttons">
+    <a href="/category/create" class="btn add-btn">+ New Category</a>
+  </div>
+</div>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Created On</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in categories %}
+      <tr>
+        <td>{{category.name}}</td>
+        <td>{{category.created_on}}</td>
+        <td>
+          <div class="action-buttons">
+            <a href="{% url 'category:details' category.id %}" class="btn details-btn">Details</a>
+            <a href="{% url 'category:edit' category.id%}" class="btn edit-btn">Edit</a>
+            <a href="{% url 'category:delete' category.id%}" class="btn delete-btn">Delete</a>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

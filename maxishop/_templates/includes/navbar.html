@@ -1,0 +1,52 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Brand -->
+    <a href="{% url 'home' %}" class="navbar-brand">
+      <span class="brand-icon">M</span>
+      <span>MaxiShop</span>
+    </a>
+
+    <!-- Navigation -->
+    <div class="navbar-menu" id="navbar-menu">
+      <a href="{% url 'home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+        Home
+      </a>
+
+      <a
+        href="{% url 'brand:list' %}"
+        class="nav-link {% if request.resolver_match.namespace == 'brand' %}active{% endif %}">
+        Brand
+      </a>
+
+      <a
+        href="{% url 'category:list' %}"
+        class="nav-link {% if request.resolver_match.namespace == 'category' %}active{% endif %}">
+        Category
+      </a>
+    </div>
+
+    <!-- Mobile Menu -->
+    <button
+      class="navbar-toggle"
+      type="button"
+      onclick="toggleNavbar()"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="navbar-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<script>
+  function toggleNavbar() {
+    const menu = document.getElementById("navbar-menu");
+    const button = document.querySelector(".navbar-toggle");
+
+    const isOpen = menu.classList.toggle("active");
+
+    button.setAttribute("aria-expanded", isOpen);
+  }
+</script>
