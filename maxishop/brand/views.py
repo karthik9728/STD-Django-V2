@@ -29,10 +29,10 @@ def get(request,id = None):
     if(id is None):
         brands = Brand.objects.all().order_by('name')
         # brands = Brand.objects.all().order_by('-name')
-        return render(request,"index.html",{'brands':brands})
+        return render(request,"brand/index.html",{'brands':brands})
     else:
         brand = get_object_or_404(Brand,id=id)
-        return render(request,"details.html",{'brand':brand})
+        return render(request,"brand/details.html",{'brand':brand})
 
 def create(request):
     form = BrandForm()
@@ -40,11 +40,11 @@ def create(request):
         form = BrandForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('brand')
+            return redirect('brand:list')
     else:
         form = BrandForm()
         
-    return render(request,"create.html",{'form':form})
+    return render(request,"brand/create.html",{'form':form})
 
 def edit(request,id):  
     brand = get_object_or_404(Brand,id=id)
@@ -53,11 +53,11 @@ def edit(request,id):
         form = BrandForm(request.POST,instance=brand)
         if form.is_valid():
             form.save()
-            return redirect('brand')
+            return redirect('brand:list')
     else:
         form = BrandForm(instance=brand)
         
-    return render(request,"edit.html",{'form':form})
+    return render(request,"brand/edit.html",{'form':form})
 
 def upsert(request,id=None):
     brand = None
@@ -73,11 +73,11 @@ def upsert(request,id=None):
             else:
                 messages.success(request, "Brand created successfully!")
                 
-            return redirect('brand')           
+            return redirect('brand:list')           
     else:
         form = BrandForm(instance=brand)
         
-    return render(request,"upsert.html",{'form':form})
+    return render(request,"brand/upsert.html",{'form':form})
 
 def delete(request,id):
     brand = get_object_or_404(Brand,id=id)
@@ -85,7 +85,7 @@ def delete(request,id):
     if request.method == "POST" :
         brand.delete()
         messages.warning(request, "Brand deleted successfully!")
-        return redirect('brand')
+        return redirect('brand:list')
 
-    return render(request, "delete.html", {'brand': brand})
+    return render(request, "brand/delete.html", {'brand': brand})
     

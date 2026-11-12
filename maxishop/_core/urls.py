@@ -23,6 +23,7 @@ from django.views.static import serve
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("brand/",include('brand.urls')),
+    path('category/', include('category.urls')),
      # Local development static file serving
     re_path(
         r'^static/(?P<path>.*)$',

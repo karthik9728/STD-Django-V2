@@ -30,11 +30,17 @@
             <td>{{brand.created_on}}</td>
             <td>
               <div class="action-buttons">
-                <a href="{% url 'details' brand.id %}" class="btn details-btn"
+                <a
+                  href="{% url 'brand:details' brand.id %}"
+                  class="btn details-btn"
                   >Details</a
                 >
-                <a href="{% url 'edit' brand.id%}" class="btn edit-btn">Edit</a>
-                <a href="{% url 'delete' brand.id%}" class="btn delete-btn"
+                <a href="{% url 'brand:edit' brand.id%}" class="btn edit-btn"
+                  >Edit</a
+                >
+                <a
+                  href="{% url 'brand:delete' brand.id%}"
+                  class="btn delete-btn"
                   >Delete</a
                 >
               </div>
