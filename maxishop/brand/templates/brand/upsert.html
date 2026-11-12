@@ -1,9 +1,6 @@
-{% extends "base.html" %} {% block title %} {% if form.instance.pk %} Edit {%
-else%} Create {% endif%} Brand{% endblock %} {% block content %}
+{% extends "base.html" %} {% block title %} {% if form.instance.pk %} Edit {%else%} Create {% endif%} Brand {%endblock%} {% block content %}
 <div class="page-header">
-  <div class="title">
-    {% if form.instance.pk %} Edit {% else%} Create {% endif%} Brand
-  </div>
+  <div class="title">{% if form.instance.pk %} Edit {% else%} Create {% endif%} Brand</div>
   <div class="action-buttons">
     <a href="/brand" class="btn back-btn">Back</a>
   </div>
@@ -23,9 +20,7 @@ else%} Create {% endif%} Brand{% endblock %} {% block content %}
     </div>
 
     <div class="action-buttons">
-      <button type="submit" class="btn add-btn">
-        {% if form.instance.pk %} Update {% else%} Create {% endif%}
-      </button>
+      <button type="submit" class="btn add-btn">{% if form.instance.pk %} Update {% else%} Create {% endif%}</button>
     </div>
   </form>
 </div>
