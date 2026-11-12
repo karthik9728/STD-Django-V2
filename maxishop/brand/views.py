@@ -26,7 +26,8 @@ class BrandView(View):
 
 def get(request,id = None):
     if(id is None):
-        brands = Brand.objects.all()
+        brands = Brand.objects.all().order_by('name')
+        # brands = Brand.objects.all().order_by('-name')
         return render(request,"index.html",{'brands':brands})
     else:
         brand = get_object_or_404(Brand,id=id)
@@ -44,8 +45,7 @@ def create(request):
         
     return render(request,"create.html",{'form':form})
 
-def edit(request,id):
-    
+def edit(request,id):  
     brand = get_object_or_404(Brand,id=id)
     form = BrandForm()
     if request.method == "POST" :
@@ -57,4 +57,18 @@ def edit(request,id):
         form = BrandForm(instance=brand)
         
     return render(request,"edit.html",{'form':form})
+
+def upsert(request,id=None):
+    brand = None
+    if id:
+         brand = get_object_or_404(Brand,id=id)
+    if request.method == "POST" :
+        form = BrandForm(request.POST,instance=brand)
+        if form.is_valid():
+            form.save()
+            return redirect('brand')
+    else:
+        form = BrandForm(instance=brand)
+        
+    return render(request,"upsert.html",{'form':form})
 
