@@ -17,6 +17,7 @@ class Product(models.Model):
     class Meta:
         db_table = "product"
 
+# variable length keyword arguments
 @receiver(post_delete, sender=Product)
 def delete_product_image(sender, instance, **kwargs):
     if instance.image:
