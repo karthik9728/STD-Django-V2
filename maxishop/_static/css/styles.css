@@ -380,6 +380,16 @@ tbody tr:last-child td {
   overflow-wrap: anywhere;
 }
 
+.product-image {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px;
+    background: white;
+}
+
 /* Form Container */
 .form-container {
   width: 100%;

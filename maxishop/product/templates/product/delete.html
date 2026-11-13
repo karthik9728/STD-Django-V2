@@ -1,0 +1,37 @@
+{% extends "base.html" %} {% block title %}Delete Product{% endblock %} {% block content %}
+<div class="page-header">
+  <div class="title">Delete Product</div>
+  <div class="action-buttons">
+    <a href="{% url 'product:list' %}" class="btn back-btn">Back</a>
+  </div>
+</div>
+
+<div class="form-container">
+   <div class="details-item">
+        <div class="detail-data">
+            {% if product.image %}
+                <img src="{{ product.image.url }}"
+                     alt="{{ product.name }}"
+                     class="product-image">
+            {% else %}
+                No image available
+            {% endif %}
+        </div>
+    </div>
+  <div class="delete-message">
+    Are you sure you want to delete
+    <strong>{{ product.name }}</strong>
+    ?
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="action-buttons">
+      <button type="submit" class="btn delete-btn">Confirm Delete</button>
+
+      <a href="{% url 'product:list' %}" class="btn back-btn">Cancel</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

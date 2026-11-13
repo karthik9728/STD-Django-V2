@@ -1,0 +1,63 @@
+
+{% extends "base.html" %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+    <div class="title">Product Details</div>
+
+    <div class="action-buttons">
+        <a href="{% url 'product:list' %}" class="btn back-btn">Back</a>
+    </div>
+</div>
+
+<div class="details-section">
+
+    <div class="details-item">
+        <div class="detail-label">Id</div>
+        <div class="detail-data">{{ product.id }}</div>
+    </div>
+
+    <div class="details-item">
+        <div class="detail-label">Name</div>
+        <div class="detail-data">{{ product.name }}</div>
+    </div>
+
+    <div class="details-item">
+        <div class="detail-label">Brand</div>
+        <div class="detail-data">{{ product.brand.name }}</div>
+    </div>
+
+    <div class="details-item">
+        <div class="detail-label">Category</div>
+        <div class="detail-data">{{ product.category.name }}</div>
+    </div>
+
+    <div class="details-item">
+        <div class="detail-label">Price</div>
+        <div class="detail-data">₹{{ product.price }}</div>
+    </div>
+
+    <div class="details-item">
+        <div class="detail-label">Created On</div>
+        <div class="detail-data">{{ product.created_on }}</div>
+    </div>
+
+    <div class="details-item">
+        <div class="detail-label">Product Image</div>
+        <div class="detail-data">
+            {% if product.image %}
+                <img src="{{ product.image.url }}"
+                     alt="{{ product.name }}"
+                     class="product-image">
+            {% else %}
+                No image available
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

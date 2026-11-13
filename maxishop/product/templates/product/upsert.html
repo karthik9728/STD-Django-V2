@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %}{% if form.instance.pk %} Edit {%else%} Create {% endif%} Product{% endblock %} {% block content %}
+<div class="page-header">
+  <div class="title">
+    {% if form.instance.pk %} Edit {% else%} Create {% endif%} Product
+  </div>
+  <div class="action-buttons">
+    <a href="/product" class="btn back-btn">Back</a>
+  </div>
+</div>
+<div class="form-container">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-field">
+      {{ form.name.label_tag }} {{ form.name }} 
+      {{ form.brand.label_tag }} {{ form.brand }}
+      {{ form.category.label_tag }} {{ form.category }}
+      {{ form.price.label_tag }} {{ form.price }}
+      {{ form.image.label_tag }} {{ form.image }}
+    </div>
+
+    <div class="action-buttons">
+      <button type="submit" class="btn add-btn">
+        {% if form.instance.pk %} Update {% else%} Create {% endif%}
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock %}

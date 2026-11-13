@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.views.static import serve
+
 from . import views
 
 urlpatterns = [
@@ -26,11 +27,17 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("brand/",include('brand.urls')),
     path('category/', include('category.urls')),
+    path('product/', include('product.urls')),
      # Local development static file serving
     re_path(
         r'^static/(?P<path>.*)$',
         serve,
         {'document_root': settings.BASE_DIR / '_static'}
+    ),
+     re_path(
+        r'^_media/(?P<path>.*)$',
+        serve,
+        {'document_root': settings.MEDIA_ROOT}
     ),
 ]
 

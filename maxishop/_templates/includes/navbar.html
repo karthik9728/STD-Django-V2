@@ -23,6 +23,12 @@
         class="nav-link {% if request.resolver_match.namespace == 'category' %}active{% endif %}">
         Category
       </a>
+
+       <a
+        href="{% url 'product:list' %}"
+        class="nav-link {% if request.resolver_match.namespace == 'product' %}active{% endif %}">
+        Product
+      </a>
     </div>
 
     <!-- Mobile Menu -->
