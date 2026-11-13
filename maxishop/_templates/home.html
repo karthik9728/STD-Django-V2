@@ -1,23 +1,135 @@
-{% extends "base.html" %} {% block title %}Home | MaxiShop{% endblock %} {% block content %}
 
-<div class="home-container">
-  <section class="welcome-section">
-    <h1>Welcome to MaxiShop</h1>
-    <p>Manage your shopping platform from one place.</p>
-  </section>
+{% extends "base.html" %}
 
-  <section class="dashboard-grid">
-    <div class="dashboard-card">
-      <h2>Brands</h2>
-      <p>Manage your product brands.</p>
-      <a href="{% url 'brand:list' %}" class="btn add-btn">Manage Brands</a>
-    </div>
+{% block title %}MaxiShop{% endblock %}
 
-    <div class="dashboard-card">
-      <h2>Categories</h2>
-      <p>Manage your product categories.</p>
-      <a href="{% url 'category:list' %}" class="btn add-btn">Manage Categories</a>
-    </div>
-  </section>
+{% block content %}
+
+<!-- Search and Filters -->
+<div class="catalog-toolbar">
+
+    <form method="get" class="filter-form">
+
+        <div class="search-box">
+            <input
+                type="text"
+                name="search"
+                placeholder="Search products..."
+                value="{{ search }}"
+            >
+        </div>
+
+        <div class="filter-group">
+            <select name="brand" onchange="this.form.submit()">
+                <option value="">All Brands</option>
+                {% for brand in brands %}
+                    <option
+                        value="{{ brand.id }}"
+                        {% if selected_brand == brand.id|stringformat:"s" %}selected{% endif %}
+                    >
+                        {{ brand.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <select name="category" onchange="this.form.submit()">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                    <option
+                        value="{{ category.id }}"
+                        {% if selected_category == category.id|stringformat:"s" %}selected{% endif %}
+                    >
+                        {{ category.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="filter-actions">
+            <button type="submit" class="btn add-btn">
+                Search
+            </button>
+
+            <a href="{% url 'home' %}" class="btn back-btn">
+                Clear
+            </a>
+        </div>
+
+    </form>
+
 </div>
+
+<!-- Product Cards -->
+<div class="product-grid">
+
+    {% for product in products %}
+
+        <div class="product-card">
+
+            <div class="product-image-container">
+                {% if product.image %}
+                    <img
+                        src="{{ product.image.url }}"
+                        alt="{{ product.name }}"
+                        class="product-card-image"
+                    >
+                {% else %}
+                    <div class="no-product-image">
+                        No Image Available
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="product-card-content">
+
+               <div class="product-tags">        
+                 <div class="product-tag">
+                    <span>{{ product.category.name }}</span>
+                </div>
+
+                 <div class="product-tag">
+                    <span>{{ product.brand.name }}</span>
+                </div>
+
+               </div>
+
+                <h3 class="product-name">
+                    {{ product.name }}
+                </h3>
+
+               
+
+                <div class="product-card-footer">
+                    <div class="product-price">
+                        ₹{{ product.price|floatformat:2 }}
+                    </div>
+
+                    <a
+                        href="{% url 'product:details' product.id %}"
+                        class="btn details-btn"
+                    >
+                        View
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    {% empty %}
+
+        <div class="empty-products">
+            <h3>No Products Found</h3>
+            <p>Try changing your search or filters.</p>
+            <a href="{% url 'home' %}" class="btn back-btn">
+                Clear Filters
+            </a>
+        </div>
+
+    {% endfor %}
+
+</div>
+
 {% endblock %}
